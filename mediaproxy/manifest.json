@@ -11,7 +11,7 @@
     }
     ,
     "armeabi-v7a": {
-      "path": "http://127.0.0.1:9978/file/dp/bin/mediaproxy/mediaproxy-arm",
+      "path": "https://wget.la/https://github.com/chitue/dongliTV/blob/main/mediaproxy/mediaproxy-arm",
       "size": 1757116,
       "sha256": "525f4831ea8df0f9f6a9ffd63ce11ee5339f851a52c6b8f7e269a07c33ca5f4e"
     }
