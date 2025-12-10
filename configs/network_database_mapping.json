@@ -41,7 +41,7 @@
             "hide": 0,
             "size": 663552,
             "sha256": "b4d4b5dc86e74bf2ff96a56f199e19f1d90ebbfff49c864833c421efa13e1db4",
-            "path": "http://127.0.0.1:9978/file/dp/db/song_b4d4b.db",
+            "path": "https://wget.la/https://github.com/chitue/dongliTV/blob/main/db/song_b4d4b.db",
             "count_query": "SELECT COUNT(*) FROM songs",
             "category_count_query": "SELECT genre, COUNT(*) FROM songs GROUP BY genre",
             "categories_query": "SELECT DISTINCT genre, genre FROM songs WHERE genre IS NOT NULL AND genre != '' ORDER BY genre",
