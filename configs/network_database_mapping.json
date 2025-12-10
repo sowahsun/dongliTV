@@ -7,7 +7,7 @@
             "hide": 0,
             "size": 1347584,
             "sha256": "b8b5ec0a290416464624ead7c5476fc0e0559898385777d8e1ef9d1fb5637d33",
-            "path": "http://127.0.0.1:9978/file/dp/db/movie_b8b5e.db",
+            "path": "https://wget.la/https://github.com/chitue/dongliTV/blob/main/db/movie_b8b5e.db",
             "count_query": "SELECT COUNT(*) FROM vod_unified_data",
             "category_count_query": "SELECT type_name, COUNT(*) FROM vod_unified_data GROUP BY type_name",
             "categories_query": "SELECT DISTINCT type_name, type_name FROM vod_unified_data WHERE type_name IS NOT NULL AND type_name != '' ORDER BY type_name",
