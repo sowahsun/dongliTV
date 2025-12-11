@@ -1,9 +1,5 @@
 {
-  "name": "file-storage-repo",  // 改成您的项目名
+  "name": "my-project",
   "compatibility_date": "2025-12-11",
-  "assets": {
-    "directory": "./files",
-    "binding": "ASSETS"
-  },
   "main": "src/worker.js"
 }
