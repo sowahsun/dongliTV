@@ -3,41 +3,38 @@ export default {
     const url = new URL(request.url);
     const accept = request.headers.get("accept") || "";
     const ua = request.headers.get("user-agent") || "";
-    
-    // === 添加缓存键 ===
-    const cacheKey = new Request(url.toString(), request);
+
+    // === 只在这里添加缓存逻辑 ===
     const cache = caches.default;
     
-    // 尝试从缓存获取（静态资源缓存）
-    if (request.method === "GET") {
-      // 静态资源缓存策略
-      if (url.pathname === "/" || url.pathname === "/home.html" || 
-          url.pathname === "/api" || url.pathname.endsWith(".js") ||
-          url.pathname.endsWith(".css") || url.pathname.endsWith(".png")) {
-        
-        let response = await cache.match(cacheKey);
-        
-        if (response) {
-          // 检查缓存是否过期（自定义逻辑）
-          const cachedDate = new Date(response.headers.get('date'));
-          const now = new Date();
-          const cacheAge = (now - cachedDate) / 1000;
+    // 对于GET请求且是静态资源，尝试从缓存读取
+    if (request.method === "GET" && 
+        (url.pathname === "/" || url.pathname === "/home.html" || url.pathname === "/api")) {
+      
+      const cacheKey = new Request(url.toString(), request);
+      let cachedResponse = await cache.match(cacheKey);
+      
+      if (cachedResponse) {
+        // 简单检查缓存是否还有效（这里简化处理，实际可以更精细）
+        const cacheDate = cachedResponse.headers.get('date');
+        if (cacheDate) {
+          const cacheTime = new Date(cacheDate).getTime();
+          const now = Date.now();
+          const cacheAge = (now - cacheTime) / 1000;
           
-          // 首页缓存30分钟，API缓存5分钟，静态资源缓存2小时
-          let maxAge = 7200; // 默认2小时
-          if (url.pathname === "/" || url.pathname === "/home.html") maxAge = 1800;
-          if (url.pathname === "/api") maxAge = 300;
+          // 设置不同的缓存时间
+          let maxAge = 300; // 默认5分钟
+          if (url.pathname === "/" || url.pathname === "/home.html") maxAge = 600; // 首页10分钟
           
           if (cacheAge < maxAge) {
-            // 返回304或缓存的响应
-            return response;
+            return cachedResponse;
           }
         }
       }
     }
 
-    // === 原有的逻辑 ===
-    // 特殊处理 /api 路径
+    // === 以下是你的原版逻辑，完全不变 ===
+    // 特殊处理 /api 路径：始终返回文件下载
     if (url.pathname === "/api") {
       if (!env.ASSETS) {
         return new Response("ASSETS binding not configured", { status: 500 });
@@ -47,21 +44,21 @@ export default {
         const headers = new Headers(response.headers);
         headers.set("Content-Type", "application/octet-stream");
         headers.set("Content-Disposition", 'attachment; filename="api"');
-        // === 添加缓存头部 ===
-        headers.set("Cache-Control", "public, max-age=300"); // API缓存5分钟
-        headers.set("CDN-Cache-Control", "public, max-age=300");
-        const cachedResponse = new Response(response.body, { status: 200, headers });
+        
+        // === 只在这里添加缓存头部 ===
+        headers.set("Cache-Control", "public, max-age=300");
+        const finalResponse = new Response(response.body, { status: 200, headers });
         
         // 存储到缓存
-        ctx.waitUntil(cache.put(cacheKey, cachedResponse.clone()));
-        return cachedResponse;
+        ctx.waitUntil(cache.put(new Request(url.toString(), request), finalResponse.clone()));
+        return finalResponse;
       }
       return new Response("api file not found", { status: 404 });
     }
 
     // 根目录或 home.html 访问
     if (url.pathname === "/" || url.pathname === "/home.html") {
-      // 1. 浏览器访问
+      // 1. 浏览器访问：返回真正的 home.html 文件
       if (ua.includes("Mozilla") && accept.includes("text/html")) {
         if (!env.ASSETS) {
           return new Response("ASSETS binding not configured", { status: 500 });
@@ -69,34 +66,32 @@ export default {
         const homeRequest = new Request(`${url.origin}/home.html`);
         const response = await env.ASSETS.fetch(homeRequest);
         
-        // === 添加缓存 ===
-        if (response.status === 200) {
-          const headers = new Headers(response.headers);
-          headers.set("Cache-Control", "public, max-age=1800"); // 首页缓存30分钟
-          headers.set("CDN-Cache-Control", "public, max-age=1800");
-          const cachedResponse = new Response(response.body, response);
-          
-          // 存储到缓存
-          ctx.waitUntil(cache.put(cacheKey, cachedResponse.clone()));
-          return cachedResponse;
-        }
-        return response;
+        // === 只在这里添加缓存头部 ===
+        const headers = new Headers(response.headers);
+        headers.set("Cache-Control", "public, max-age=600");
+        const finalResponse = new Response(response.body, { headers, status: response.status });
+        
+        // 存储到缓存
+        ctx.waitUntil(cache.put(new Request(url.toString(), request), finalResponse.clone()));
+        return finalResponse;
       }
 
-      // 2. 调试工具
+      // 2. 调试工具（curl/wget 等）
       if (/curl|wget|httpie|python-requests/i.test(ua)) {
         const response = new Response("api 文件内容示例字符串", {
           status: 200,
           headers: { 
             "Content-Type": "text/plain; charset=utf-8",
-            "Cache-Control": "public, max-age=300" // 文本缓存5分钟
+            "Cache-Control": "public, max-age=300" // 添加缓存
           }
         });
-        ctx.waitUntil(cache.put(cacheKey, response.clone()));
+        
+        // 存储到缓存
+        ctx.waitUntil(cache.put(new Request(url.toString(), request), response.clone()));
         return response;
       }
 
-      // 3. 其他情况默认当成 API 调用
+      // 3. 其他情况默认当成 API 调用 → 返回 api 文件下载
       if (!env.ASSETS) {
         return new Response("ASSETS binding not configured", { status: 500 });
       }
@@ -107,11 +102,13 @@ export default {
         const headers = new Headers(response.headers);
         headers.set("Content-Type", "application/octet-stream");
         headers.set("Content-Disposition", 'attachment; filename="api"');
-        headers.set("Cache-Control", "public, max-age=300");
-        const cachedResponse = new Response(response.body, { status: 200, headers });
+        headers.set("Cache-Control", "public, max-age=300"); // 添加缓存
         
-        ctx.waitUntil(cache.put(cacheKey, cachedResponse.clone()));
-        return cachedResponse;
+        const finalResponse = new Response(response.body, { status: 200, headers });
+        
+        // 存储到缓存
+        ctx.waitUntil(cache.put(new Request(url.toString(), request), finalResponse.clone()));
+        return finalResponse;
       }
       return new Response("api file not found", { status: 404 });
     }
@@ -120,27 +117,18 @@ export default {
     if (env.ASSETS) {
       const response = await env.ASSETS.fetch(request);
       
-      // === 静态资源自动缓存 ===
+      // === 可选：为静态资源添加缓存 ===
       if (response.status === 200 && request.method === "GET") {
         const contentType = response.headers.get("content-type") || "";
-        let maxAge = 7200; // 默认2小时
-        
-        if (contentType.includes("text/html")) maxAge = 1800;
-        else if (contentType.includes("application/javascript") || 
-                 contentType.includes("text/css")) maxAge = 86400; // JS/CSS缓存1天
-        else if (contentType.includes("image/")) maxAge = 2592000; // 图片缓存30天
-        
-        const headers = new Headers(response.headers);
-        headers.set("Cache-Control", `public, max-age=${maxAge}`);
-        
-        const cachedResponse = new Response(response.body, {
-          status: response.status,
-          statusText: response.statusText,
-          headers: headers
-        });
-        
-        ctx.waitUntil(cache.put(cacheKey, cachedResponse.clone()));
-        return cachedResponse;
+        if (contentType.includes("image/") || 
+            contentType.includes("font/") ||
+            contentType.includes("application/javascript") ||
+            contentType.includes("text/css")) {
+          
+          const headers = new Headers(response.headers);
+          headers.set("Cache-Control", "public, max-age=86400");
+          return new Response(response.body, { headers, status: response.status });
+        }
       }
       
       return response;
