@@ -1,29 +1,22 @@
-# ====== 版本控制和文档 ======
+# ====== 核心：必须排除的版本控制和开发文件 ======
 .gitattributes          export-ignore
 .gitignore              export-ignore
 .github/                export-ignore
-README.md               export-ignore
-CHANGELOG.md            export-ignore
 
-# ====== 开发和测试文件 ======
-home.html               export-ignore      # 测试页面
-wrangler.jsonc          export-ignore      # Worker配置（不需要打包）
-src/                    export-ignore      # Worker源代码目录
-
-# ====== IDE和编辑器配置 ======
+# ====== 排除常见IDE和编辑器配置文件 ======
 .vscode/                export-ignore
 .idea/                  export-ignore
 *.code-workspace       export-ignore
 *.sublime-project      export-ignore
 
-# ====== 构建和依赖文件 ======
+# ====== 排除构建过程、依赖和日志文件 ======
 node_modules/           export-ignore
 __pycache__/           export-ignore
 *.log                   export-ignore
 dist/                   export-ignore
 build/                  export-ignore
 
-# ====== 本地配置文件 ======
+# ====== 排除本地或机密配置文件（非常重要！） ======
 .env                    export-ignore
 .env.local             export-ignore
 config.local.*          export-ignore
