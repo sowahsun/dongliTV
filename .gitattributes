@@ -1,16 +1,22 @@
-# 设置 export-ignore 属性，这些文件/目录在生成 Release 源码包时会被排除
+# ====== 核心：必须排除的版本控制和开发文件 ======
 .gitattributes          export-ignore
 .gitignore              export-ignore
-.github/                export-ignore  # 排除整个 CI/CD 或 issue 模板目录
-.vscode/                export-ignore  # 排除编辑器配置
-.idea/                  export-ignore
-*.sublime-project       export-ignore
+.github/                export-ignore
 
-# 排除开发、构建相关的目录和文件
-tests/                  export-ignore
-test/                   export-ignore
-docs/                   export-ignore  # 如果文档不需要随源码分发
+# ====== 排除常见IDE和编辑器配置文件 ======
+.vscode/                export-ignore
+.idea/                  export-ignore
+*.code-workspace       export-ignore
+*.sublime-project      export-ignore
+
+# ====== 排除构建过程、依赖和日志文件 ======
 node_modules/           export-ignore
-dist/                   export-ignore  # 排除构建产物（如果需要提供纯净源码）
+__pycache__/           export-ignore
 *.log                   export-ignore
-.env.example            export-ignore
+dist/                   export-ignore
+build/                  export-ignore
+
+# ====== 排除本地或机密配置文件（非常重要！） ======
+.env                    export-ignore
+.env.local             export-ignore
+config.local.*          export-ignore
