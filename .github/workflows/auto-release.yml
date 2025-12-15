@@ -9,7 +9,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write  # 必须要有写入权限
     
     steps:
       - name: Checkout code
@@ -17,26 +17,45 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Create versioned ZIP
+      - name: 创建版本ZIP包（应用.gitattributes规则）
         run: |
-          # 提取标签名（如 v1.2.3）
           TAG_NAME="${GITHUB_REF#refs/tags/}"
-          # 生成带版本号的文件名
           OUTPUT_FILE="dongliTV-${TAG_NAME}.zip"
-          # 使用git archive应用.gitattributes规则
+          # 关键命令：使用git archive，它会自动应用.gitattributes中的export-ignore规则
           git archive --format=zip --output="$OUTPUT_FILE" HEAD
           echo "ZIP_FILE=$OUTPUT_FILE" >> $GITHUB_ENV
           
-      - name: Create or Update Release
-        uses: softprops/action-gh-release@v1
-        with:
-          generate_release_notes: true
-          draft: false
-          prerelease: false
-          # 关键设置：替换现有资产文件
-          replace_assets: true
-          # 只上传我们自定义的ZIP，不保留自动生成的
-          files: |
-            ${{ env.ZIP_FILE }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 通过原始API创建空Release（不自动生成源码包）
+        id: create_release_via_api
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          # 注意：这里使用了一个特殊参数 auto_generate_notes，但主要作用是创建一个“空壳”Release
+          JSON_DATA=$(jq -n \
+            --arg tag_name "$TAG_NAME" \
+            --arg name "$TAG_NAME" \
+            '{
+              tag_name: $tag_name,
+              name: $name,
+              draft: false,
+              prerelease: false,
+              generate_release_notes: true
+            }')
+          
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "$JSON_DATA" \
+            "https://api.github.com/repos/${{ github.repository }}/releases")
+          
+          # 从响应中提取上传URL，供下一步使用
+          UPLOAD_URL=$(echo "$RESPONSE" | jq -r '.upload_url' | sed 's/{.*}//')
+          echo "upload_url=$UPLOAD_URL" >> $GITHUB_ENV
+          
+      - name: 上传自定义ZIP包到Release
+        run: |
+          # 使用上一步获取的上传URL
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/zip" \
+            --data-binary @"${{ env.ZIP_FILE }}" \
+            "${{ env.upload_url }}?name=${{ env.ZIP_FILE }}"
