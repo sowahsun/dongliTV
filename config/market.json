@@ -56,10 +56,10 @@
         "list": [
             {
                 "name": "东篱",
-                "url": "",
+                "url": "https://gh-proxy.org/https://raw.githubusercontent.com/chitue/dongliTV/refs/heads/main/version.json",
                 "icon": "",
                 "copy": "",
-                "version": "占位"
+                "version": ""
             }
         ]
     }
