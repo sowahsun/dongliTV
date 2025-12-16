@@ -1,3 +1,11 @@
+20251216
+商店APK下载优化
+代理地址优化
+配置中心和商店去掉推荐
+实现本地包在线更新
+实现github工作流自动打包本地包并发布
+
+
 20251215
 实现备份本地目录/storage/emulated/0/TVData/cookie/下面的cookie到凯速/TVData/cookie/
 实现下载凯速/TVData/cookie/目录的cookie到本地目录/storage/emulated/0/TVData/cookie/
