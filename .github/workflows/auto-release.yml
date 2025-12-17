@@ -35,6 +35,9 @@ jobs:
           FILE_SHA256=$(sha256sum "$ZIP_FILE" | cut -d' ' -f1)
 
           VERSION_NAME="${TAG_NAME#v}"
+          
+          # 获取当前日期
+          UPDATE_DATE=$(date +%Y-%m-%d)
 
           if [[ $TAG_NAME =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
             MAJOR=${BASH_REMATCH[1]}
@@ -51,7 +54,9 @@ jobs:
             "versionCode": $VERSION_CODE,
             "url": "https://github.com/chitue/dongliTV/releases/download/$TAG_NAME/$ZIP_FILE",
             "size": $FILE_SIZE,
-            "sha256": "$FILE_SHA256"
+            "sha256": "$FILE_SHA256",
+            "updateDate": "$UPDATE_DATE",
+            "releaseNotes": "修复已知问题，提升稳定性"
           }
           EOF
           )

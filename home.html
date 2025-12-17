@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>东篱 - 个人资源导航站</title>
+    <title>东篱 - 资源导航站</title>
     <style>
         :root {
             --primary-color: #6a85b6; 
@@ -25,7 +25,6 @@
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
             color: var(--text-color);
-            /* 这里使用一张高分辨率且带有景深效果的图片，以突出磨砂玻璃效果 */
             background: url('https://picsum.photos/1920/1080?random=123') no-repeat center center fixed; 
             background-size: cover;
             min-height: 100vh;
@@ -41,18 +40,18 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-overlay);
             z-index: -1;
-            backdrop-filter: blur(10px); /* 强化磨砂玻璃效果 */
+            backdrop-filter: blur(10px);
         }
 
         .container {
             width: 100%;
-            max-width: 900px; /* 扩展最大宽度，适应资源站布局 */
+            max-width: 900px;
             padding: 20px;
-            margin-top: 50px; /* 顶部留空给时间 */
+            margin-top: 50px;
             text-align: center;
         }
 
-        /* --- 顶部时间显示 --- */
+        /* 时间显示区域 */
         .time-display-area {
             position: fixed;
             top: 20px;
@@ -74,7 +73,7 @@
             color: var(--sub-text-color);
         }
 
-        /* --- 个人信息区域 --- */
+        /* 个人信息区域 */
         .profile-section {
             padding: 20px 0;
             margin-bottom: 30px;
@@ -89,13 +88,97 @@
             transition: transform 0.5s;
         }
 
+        .avatar:hover {
+            transform: rotate(360deg);
+        }
+
         .site-title {
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
-        
-        /* --- 签名/公告区域 (磨砂玻璃卡片) --- */
+
+        /* 版本信息样式 - 下载按钮在右下角 */
+        .version-info-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .version-info {
+            margin-top: 15px;
+            padding: 12px 25px 12px 25px; /* 右下角多留点空间 */
+            background: var(--glass-bg);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--sub-text-color);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 300px;
+            text-align: left;
+            position: relative;
+            padding-bottom: 50px; /* 为下载按钮留出空间 */
+        }
+
+        .version-item {
+            margin: 6px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .version-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            min-width: 80px;
+        }
+
+        .version-value {
+            color: var(--text-color);
+            flex: 1;
+            word-break: break-word;
+        }
+
+        /* 下载按钮在右下角 */
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary-color), #4a6fa5);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(106, 133, 182, 0.3);
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            z-index: 10;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(106, 133, 182, 0.5);
+        }
+
+        /* 更新日志样式 */
+        .release-notes {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            border-left: 3px solid var(--primary-color);
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        /* 签名/公告区域 */
         .announcement {
             background: var(--glass-bg);
             padding: 15px 25px;
@@ -105,10 +188,10 @@
             font-size: 0.95rem;
             font-style: italic;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-
-        /* --- 资源卡片网格 --- */
+        /* 资源卡片网格 */
         .section-title {
             font-size: 1.2rem;
             font-weight: bold;
@@ -117,6 +200,7 @@
             padding-left: 10px;
             border-left: 3px solid var(--primary-color);
             color: var(--primary-color);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .grid {
@@ -135,6 +219,9 @@
             cursor: pointer;
             text-align: left;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -160,19 +247,29 @@
             font-size: 0.75rem;
             color: var(--sub-text-color);
             opacity: 0.8;
-            height: 30px; /* 限制高度 */
-            overflow: hidden;
+            flex: 1;
+            min-height: 30px;
         }
 
-        /* --- 底部 --- */
+        .card-action {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 底部 */
         .footer {
             margin-top: 50px;
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.5);
             padding-bottom: 20px;
+            text-align: center;
         }
 
-        /* --- 复制成功提示 (Toast) --- */
+        /* 复制成功提示 */
         .toast {
             position: fixed;
             top: 20%;
@@ -187,20 +284,34 @@
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 200;
+            backdrop-filter: blur(10px);
         }
+        
         .toast.show { 
             opacity: 1; 
             visibility: visible; 
-            top: 15%; /* 向上浮动一点 */
+            top: 15%;
         }
 
         /* 移动端适配 */
         @media (max-width: 600px) {
             .clock-display { font-size: 2rem; }
             .container { padding: 10px; margin-top: 100px; }
-            .grid { grid-template-columns: 1fr; } /* 手机端单列 */
+            .grid { grid-template-columns: 1fr; }
             .profile-section { margin-bottom: 20px; }
             .announcement { padding: 15px; }
+            .version-info { 
+                padding: 10px 15px 45px 15px; 
+                font-size: 0.8rem; 
+                min-width: 250px; 
+            }
+            .version-label { min-width: 70px; }
+            .download-btn { 
+                padding: 6px 15px; 
+                font-size: 0.75rem; 
+                right: 10px; 
+                bottom: 10px; 
+            }
         }
     </style>
 </head>
@@ -214,21 +325,77 @@
     <div class="container">
         <div class="profile-section">
             <img src="https://q1.qlogo.cn/g?b=qq&nk=10001&s=640" alt="Avatar" class="avatar">
-            <h1 class="site-title">我的影视接口导航站</h1>
+            <h1 class="site-title">东篱 - 资源导航站</h1>
+            
+            <!-- 版本信息区域（下载按钮在右下角） -->
+            <div class="version-info-container">
+                <div id="versionInfo" class="version-info">
+                    <div class="version-item">
+                        <span class="version-label">版本:</span>
+                        <span class="version-value" id="versionName">加载中...</span>
+                    </div>
+                    <div class="version-item">
+                        <span class="version-label">大小:</span>
+                        <span class="version-value" id="versionSize">...</span>
+                    </div>
+                    <div class="version-item">
+                        <span class="version-label">更新日期:</span>
+                        <span class="version-value" id="updateDate">...</span>
+                    </div>
+                    <div class="version-item">
+                        <span class="version-label">版本号:</span>
+                        <span class="version-value" id="versionCode">...</span>
+                    </div>
+                    <div class="version-item">
+                        <span class="version-label">SHA256:</span>
+                        <span class="version-value" id="versionSHA" style="font-size: 0.7rem; word-break: break-all;">...</span>
+                    </div>
+                    
+                    <!-- 更新日志区域 -->
+                    <div id="releaseNotes" class="release-notes" style="display: none;">
+                        <strong>📝 更新日志:</strong>
+                        <span id="notesContent"></span>
+                    </div>
+                    
+                    <!-- 下载按钮放在右下角 -->
+                    <a id="downloadLink" class="download-btn" href="#" target="_blank" style="display: none;">
+                        📥 下载最新版本
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="announcement">
-            欢迎来到本站
+            欢迎来到东篱资源导航站！本站提供TV本地包、接口以及各种实用工具，请收藏使用！<br>
         </div>
 
         <div class="section-title">📺 TVBox 核心接口</div>
         <div class="grid">
-            
+            <!-- 东篱接口（第一个） -->
+            <div class="card" onclick="copyText('https://16151.kstore.space', '东篱接口')">
+                <span class="card-icon">🌿</span>
+                <div class="card-content">
+                    <div class="card-title">东篱接口</div>
+                    <div class="card-desc">稳定高速的TVBox接口，持续维护更新</div>
+                    <div class="card-action">📋 点击复制地址</div>
+                </div>
+            </div>
+
             <div class="card" onclick="copyText('https://肥猫.com', '肥猫接口')">
                 <span class="card-icon">🐱</span>
                 <div class="card-content">
                     <div class="card-title">肥猫接口</div>
                     <div class="card-desc">稳定可靠的主力接口，持续更新，推荐使用</div>
+                    <div class="card-action">📋 点击复制地址</div>
+                </div>
+            </div>
+
+            <div class="card" onclick="copyText('http://我不是.摸鱼儿.com', '摸鱼接口')">
+                <span class="card-icon">🎣</span>
+                <div class="card-content">
+                    <div class="card-title">摸鱼接口</div>
+                    <div class="card-desc">摸鱼专用接口，稳定可靠</div>
+                    <div class="card-action">📋 点击复制地址</div>
                 </div>
             </div>
 
@@ -237,41 +404,47 @@
                 <div class="card-content">
                     <div class="card-title">王二小接口</div>
                     <div class="card-desc">经典线路，本本分分，不割韭菜</div>
+                    <div class="card-action">📋 点击复制地址</div>
                 </div>
             </div>
 
-            <div class="card" onclick="copyText('http://ok321.top/ok', 'OK佬接口')">
+            <div class="card" onclick="copyText('http://ok321.top/ok', 'OK接口')">
                 <span class="card-icon">⚙️</span>
                 <div class="card-content">
                     <div class="card-title">OK接口</div>
                     <div class="card-desc">OK影视天下第一，就是牛逼</div>
+                    <div class="card-action">📋 点击复制地址</div>
                 </div>
             </div>
+            
             <div class="card" onclick="copyText('http://www.饭太硬.com/tv', '饭太硬接口')">
                 <span class="card-icon">🍚</span>
                 <div class="card-content">
                     <div class="card-title">饭太硬接口</div>
-                    <div class="card-desc">饭太太太太太太硬，稳定。</div>
-                </div>
-            </div>
-            <div class="card" onclick="copyText('https://t.me/ufapkchat', 'TG 群组')">
-                <span class="card-icon">✈️</span>
-                <div class="card-content">
-                    <div class="card-title">加入 TG 群组</div>
-                    <div class="card-desc">获取最新通知和资源分享。</div>
+                    <div class="card-desc">饭太太太太太太硬，好用</div>
+                    <div class="card-action">📋 点击复制地址</div>
                 </div>
             </div>
 
+            <!-- TG群组跳转链接 -->
+            <div class="card" onclick="window.open('https://t.me/ufapkchat', '_blank')">
+                <span class="card-icon">✈️</span>
+                <div class="card-content">
+                    <div class="card-title">TG交流群</div>
+                    <div class="card-desc">加入Telegram群组，获取最新通知和资源分享</div>
+                    <div class="card-action">🔗 点击打开链接</div>
+                </div>
+            </div>
         </div>
 
         <div class="section-title">🛠️ 常用在线工具</div>
         <div class="grid">
-            
             <div class="card" onclick="window.open('https://github.com/FongMi/Release/tree/fongmi/apk', '_blank')">
                 <span class="card-icon">🔍</span>
                 <div class="card-content">
                     <div class="card-title">影视 APP 下载</div>
                     <div class="card-desc">最新的影视 App 下载地址</div>
+                    <div class="card-action">🔗 点击打开链接</div>
                 </div>
             </div>
 
@@ -280,6 +453,7 @@
                 <div class="card-content">
                     <div class="card-title">配置编辑器</div>
                     <div class="card-desc">在线配置 TVBox 接口文件</div>
+                    <div class="card-action">🔗 点击打开链接</div>
                 </div>
             </div>
             
@@ -288,18 +462,57 @@
                 <div class="card-content">
                     <div class="card-title">接口解密</div>
                     <div class="card-desc">加密接口一键解密</div>
+                    <div class="card-action">🔗 点击打开链接</div>
+                </div>
+            </div>
+            
+            <div class="card" onclick="checkVersion()">
+                <span class="card-icon">🔄</span>
+                <div class="card-content">
+                    <div class="card-title">检查更新</div>
+                    <div class="card-desc">重新加载版本信息</div>
+                    <div class="card-action">🔄 点击刷新</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">📦 云存储与资源</div>
+        <div class="grid">
+            <div class="card" onclick="window.open('https://my.ksust.com/kstore.htm?aff=16151', '_blank')">
+                <span class="card-icon">☁️</span>
+                <div class="card-content">
+                    <div class="card-title">凯速直链云存储</div>
+                    <div class="card-desc">高速稳定的云存储服务，支持直链下载</div>
+                    <div class="card-action">🔗 点击打开链接</div>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.open('https://adzhp.cc/', '_blank')">
+                <span class="card-icon">🛒</span>
+                <div class="card-content">
+                    <div class="card-title">爱达杂货铺</div>
+                    <div class="card-desc">各种实用工具和资源集合</div>
+                    <div class="card-action">🔗 点击打开链接</div>
                 </div>
             </div>
         </div>
 
         <footer class="footer">
-            <p>2024-2025 Powered by Glassmorphism & Resources</p>
+            <p>© 2024-2025 东篱 | Cloudflare Worker部署 | 版本信息自动加载</p>
+            <p style="font-size: 0.6rem; margin-top: 5px; opacity: 0.7;">
+                页面加载时间: <span id="lastUpdateTime">-</span> | 
+                <span id="versionStatus">正在检查版本...</span>
+            </p>
         </footer>
     </div>
 
     <div id="toast" class="toast">复制成功！</div>
 
     <script>
+        // 页面加载时间戳
+        const pageLoadTime = new Date();
+        const GITHUB_PROXY = 'https://v6.gh-proxy.org/';
+
         // --- 1. 时间功能实现 ---
         function updateTime() {
             const now = new Date();
@@ -307,18 +520,157 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             
-            // 更新时钟 (精确到秒)
             document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
 
-            // 更新日期 (格式：2025年12月10日 星期五)
             const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
             document.getElementById('date').innerText = now.toLocaleDateString('zh-CN', options);
+            
+            // 更新页面加载时间
+            const elapsed = Math.floor((new Date() - pageLoadTime) / 1000);
+            document.getElementById('lastUpdateTime').textContent = 
+                `${hours}:${minutes}:${seconds} (${elapsed}s)`;
         }
 
         setInterval(updateTime, 1000);
         updateTime();
 
-        // --- 2. 复制功能实现 ---
+        // --- 2. 自动加载版本信息（带代理功能）---
+        async function loadVersionInfo() {
+            try {
+                console.log('开始加载 version.json...');
+                
+                const baseUrl = window.location.origin;
+                const versionUrl = `${baseUrl}/version.json`;
+                
+                console.log('尝试从URL加载:', versionUrl);
+                
+                const response = await fetch(versionUrl, {
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                console.log('响应状态:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误! 状态: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // 显示版本信息
+                document.getElementById('versionName').textContent = data.versionName || '未知';
+                document.getElementById('versionCode').textContent = data.versionCode || '未知';
+                document.getElementById('versionSize').textContent = formatFileSize(data.size);
+                document.getElementById('versionSHA').textContent = data.sha256 || '未知';
+                
+                // 显示更新日期
+                if (data.updateDate) {
+                    try {
+                        const date = new Date(data.updateDate);
+                        const formattedDate = date.toLocaleDateString('zh-CN', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        document.getElementById('updateDate').textContent = formattedDate;
+                    } catch (e) {
+                        document.getElementById('updateDate').textContent = data.updateDate;
+                    }
+                } else {
+                    document.getElementById('updateDate').textContent = '未知';
+                }
+                
+                // 显示更新日志
+                if (data.releaseNotes) {
+                    document.getElementById('notesContent').textContent = data.releaseNotes;
+                    document.getElementById('releaseNotes').style.display = 'block';
+                }
+                
+                // 保存完整的JSON数据用于显示
+                window.versionData = data;
+                
+                // 设置下载链接（自动添加代理）
+                const downloadLink = document.getElementById('downloadLink');
+                if (data.url) {
+                    let finalUrl = data.url;
+                    
+                    // 如果是GitHub链接，自动添加代理
+                    if (finalUrl.includes('github.com') || finalUrl.includes('githubusercontent.com')) {
+                        finalUrl = GITHUB_PROXY + finalUrl;
+                        console.log('✅ 已添加GitHub代理:', finalUrl);
+                    }
+                    
+                    downloadLink.href = finalUrl;
+                    downloadLink.title = `下载 ${data.versionName} (${formatFileSize(data.size)})`;
+                    downloadLink.style.display = 'inline-flex';
+                }
+                
+                // 更新状态显示
+                document.getElementById('versionStatus').textContent = 
+                    `已加载版本: ${data.versionName}`;
+                
+                console.log('版本信息加载成功:', data);
+                
+                // 显示成功提示
+                showToast(`✅ 已加载版本 ${data.versionName}`);
+                
+            } catch (error) {
+                console.error('加载版本信息失败:', error);
+                
+                // 显示错误信息
+                document.getElementById('versionName').textContent = '加载失败';
+                document.getElementById('versionSize').textContent = '请检查网络';
+                document.getElementById('updateDate').textContent = '未知';
+                document.getElementById('versionCode').textContent = '错误';
+                document.getElementById('versionSHA').textContent = '无法获取';
+                
+                // 隐藏更新日志
+                document.getElementById('releaseNotes').style.display = 'none';
+                
+                // 更新状态显示
+                document.getElementById('versionStatus').textContent = '版本加载失败';
+                
+                // 显示错误提示
+                showToast('❌ 版本信息加载失败，请检查网络连接');
+            }
+        }
+
+        // 手动检查版本
+        function checkVersion() {
+            document.getElementById('versionName').textContent = '检查中...';
+            document.getElementById('versionSize').textContent = '...';
+            document.getElementById('updateDate').textContent = '...';
+            document.getElementById('versionCode').textContent = '...';
+            document.getElementById('versionSHA').textContent = '...';
+            document.getElementById('releaseNotes').style.display = 'none';
+            document.getElementById('versionStatus').textContent = '正在检查更新...';
+            
+            showToast('🔄 正在检查更新...');
+            loadVersionInfo();
+        }
+
+        // 文件大小格式化函数
+        function formatFileSize(bytes) {
+            if (!bytes || bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 页面加载完成后自动加载版本信息
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('页面加载完成，开始加载版本信息');
+            console.log('当前域名:', window.location.origin);
+            console.log('GitHub代理配置:', GITHUB_PROXY);
+            loadVersionInfo();
+        });
+
+        // --- 3. 复制功能实现 ---
         function copyText(text, name) {
             navigator.clipboard.writeText(text).then(() => {
                 showToast(`✅ 已复制 ${name}`);
@@ -341,8 +693,13 @@
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+            }, 2000);
         }
+
+        // 控制台欢迎信息
+        console.log('%c🌿 东篱导航站已加载', 'color: #6a85b6; font-size: 16px; font-weight: bold;');
+        console.log('%c🚀 下载按钮右下角 | GitHub自动代理', 'color: #F6821F;');
+        console.log('%c🔗 所有GitHub链接自动添加代理加速', 'color: #4CAF50;');
     </script>
 </body>
 </html>
