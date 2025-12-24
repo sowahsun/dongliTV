@@ -13,7 +13,7 @@
             "categories_query": "SELECT id, name FROM song_type ORDER BY id",
             "tables": {
                 "main": {
-                    "table_name": "song AS T1 JOIN song_type AS T2 ON T1.type_id = T2.id",
+                    "table_name": "song AS T1 JOIN song_type AS T2 ON T1.type_id = T2.id LEFT JOIN song_language AS T3 ON T1.language_id = T3.id",
                     "category_filter_field": "T1.type_id",
                     "search_fields": [
                         "T1.name",
@@ -27,7 +27,7 @@
                         "vod_actor": "T1.singer_names",
                         "vod_content": "T1.edition",
                         "vod_play_url": "'http://ktvmedia.mysoto.cc/songs/' || T1.number || '.' || T1.format",
-                        "vod_remarks": "T1.format"
+                        "vod_remarks": "T1.singer_names || ' | ' || IFNULL(T3.name, '未知语言')"
                     }
                 }
             }
