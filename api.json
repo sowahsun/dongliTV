@@ -1,6 +1,6 @@
 {
     "logo": "./assets/logo2025121201.png",
-    "wallpaper": "https://深色壁纸.xxooo.cf",
+    "wallpaper": "https://imgapi.cn/api.php?zd=mobile&fl=fengjing&gs=images",
     "spider": "./jar/dongli-spider.jar",
     "sites": [
         {
@@ -59,13 +59,12 @@
             "key": "mybaidu",
             "name": "🌆｜我的┃白渡",
             "type": 3,
-            "api": "csp_MyBaiBu",
+            "api": "csp_MyBaiDu",
             "searchable": 0,
             "quickSearch": 0,
             "changeable": 0,
             "filterable": 0,
             "indexs": 0,
-            "hide": 1,
             "style": {
                 "type": "list"
             },
