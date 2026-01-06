@@ -123,7 +123,7 @@
         },
         {
             "key": "tingchina",
-            "name": "🎧｜听书｜大全",
+            "name": "☠️｜海盗｜听书",
             "type": 3,
             "api": "csp_TingChina",
             "changeable": 0,
@@ -131,13 +131,12 @@
         },
         {
             "key": "wuwei",
-            "name": "🎧｜五维｜听书",
+            "name": "🎧｜六月｜听书",
             "type": 3,
             "api": "csp_WuWeiTing",
             "changeable": 0,
             "filterable": 1
         },
-        
         {
             "key": "蜻蜓FM",
             "name": "📻｜蜻蜓┃FM",
@@ -377,7 +376,7 @@
         },
         {
             "key": "Tg123Search",
-            "name": "Tg123Search",
+            "name": "☁｜123┃TG搜",
             "type": 3,
             "api": "csp_Tg123Search",
             "hide": 1,
@@ -387,7 +386,7 @@
         },
         {
             "key": "TgbaiduSearch",
-            "name": "TgbaiduSearch",
+            "name": "☁｜百度┃TG搜",
             "type": 3,
             "api": "csp_TgbaiduSearch",
             "hide": 1,
@@ -397,7 +396,7 @@
         },
         {
             "key": "Tg189Search",
-            "name": "Tg189Search",
+            "name": "☁｜天翼┃TG搜",
             "type": 3,
             "api": "csp_Tg189Search",
             "hide": 1,
@@ -407,7 +406,7 @@
         },
         {
             "key": "TgQuarkSearch",
-            "name": "TgQuarkSearch",
+            "name": "☁｜夸克┃TG搜",
             "type": 3,
             "api": "csp_TgQuarkSearch",
             "hide": 1,
@@ -416,8 +415,18 @@
             "ext": {}
         },
         {
+            "key": "TgAliSearch",
+            "name": "☁｜阿里┃TG搜",
+            "type": 3,
+            "api": "csp_TgAliSearch",
+            "hide": 1,
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {}
+        },
+        {
             "key": "TgSearchQuark",
-            "name": "☁TgSearchQuark┃网盘",
+            "name": "☁｜夸克┃盘搜",
             "type": 3,
             "api": "csp_TgSearchQuark",
             "searchable": 1,
@@ -426,9 +435,9 @@
             "changeable": 1,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -438,7 +447,7 @@
         },
         {
             "key": "TgSearchUc",
-            "name": "☁TgSearchUc┃网盘",
+            "name": "☁｜优囍┃盘搜",
             "type": 3,
             "api": "csp_TgSearchUc",
             "searchable": 1,
@@ -447,9 +456,9 @@
             "filterable": 0,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -459,7 +468,7 @@
         },
         {
             "key": "TgSearchAli",
-            "name": "☁TgSearchAli┃网盘",
+            "name": "☁｜阿里┃盘搜",
             "type": 3,
             "api": "csp_TgSearchAli",
             "searchable": 1,
@@ -468,9 +477,9 @@
             "filterable": 0,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -480,7 +489,7 @@
         },
         {
             "key": "TgSearchBaidu",
-            "name": "☁TgSearchBaidu┃网盘",
+            "name": "☁｜百度┃盘搜",
             "type": 3,
             "api": "csp_TgSearchBaidu",
             "searchable": 1,
@@ -489,9 +498,9 @@
             "hide": 1,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -501,7 +510,7 @@
         },
         {
             "key": "TgSearch123",
-            "name": "☁TgSearch123┃网盘",
+            "name": "☁｜123┃盘搜",
             "type": 3,
             "api": "csp_TgSearch123",
             "searchable": 1,
@@ -510,9 +519,9 @@
             "filterable": 0,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -522,7 +531,7 @@
         },
         {
             "key": "TgSearch189",
-            "name": "☁TgSearch189┃网盘",
+            "name": "☁｜天翼┃盘搜",
             "type": 3,
             "api": "csp_TgSearch189",
             "searchable": 1,
@@ -531,9 +540,9 @@
             "hide": 1,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
@@ -543,7 +552,7 @@
         },
         {
             "key": "TgSearch139",
-            "name": "☁TgSearch139┃网盘",
+            "name": "☁｜移动┃盘搜",
             "type": 3,
             "api": "csp_TgSearch139",
             "searchable": 1,
@@ -552,13 +561,34 @@
             "filterable": 0,
             "ext": {
                 "api_urls": [
-                    "https://api.jkai.de/api/search",
-                    "https://psweb.banye.tech:7777/api/search",
+                    "https://so.252035.xyz/api/search",
                     "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
                     "http://152.69.222.142:8088/api/search"
                 ],
                 "sources": [
                     "移动"
+                ]
+            }
+        },
+        {
+            "key": "TgSearchMagnet",
+            "name": "☁｜磁力┃盘搜",
+            "type": 3,
+            "api": "csp_TgSearchMagnet",
+            "searchable": 1,
+            "hide": 1,
+            "filterable": 0,
+            "changeable": 1,
+            "ext": {
+                "api_urls": [
+                    "https://so.252035.xyz/api/search",
+                    "https://so.566987.xyz/api/search",
+                    "http://154.17.15.197:8080/api/search",
+                    "http://152.69.222.142:8088/api/search"
+                ],
+                "sources": [
+                    "磁力"
                 ]
             }
         }
@@ -579,6 +609,22 @@
             "playerType": 2,
             "url": "https://fy.188766.xyz/?ip=&mima=mianfeidehaimaiqian&json=true",
             "ua": "bingcha/1.1(mianfeifenxiang)"
+        },
+        {
+            "name": "电视直播",
+            "type": "0",
+            "pass": true,
+            "url": "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
+            "epg": "https://epg.112114.xyz/?ch={name}&date={date}",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
+        },
+        {
+            "name": "直播",
+            "type": "0",
+            "pass": true,
+            "url": "https://ghfast.top/https://raw.githubusercontent.com/Wirili/IPTV/main/live.txt",
+            "epg": "https://epg.112114.xyz/?ch={name}&date={date}",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
         }
     ],
     "parses": [
