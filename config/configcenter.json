@@ -15,6 +15,12 @@
                 "des": "状态"
             },
             {
+                "name": "盘搜",
+                "key": "pansouDomain",
+                "icon": "",
+                "des": "域名"
+            },
+            {
                 "name": "凯速",
                 "key": "loginOrlogooutKStore",
                 "icon": "",

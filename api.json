@@ -1,6 +1,6 @@
 {
     "logo": "./assets/logo2025121201.png",
-    "wallpaper": "https://imgapi.cn/api.php?zd=mobile&fl=fengjing&gs=images",
+    "wallpaper": "https://tu.ltyuanfang.cn/api/fengjing.php",
     "spider": "./jar/dongli-spider.jar",
     "sites": [
         {
@@ -23,6 +23,71 @@
                 "ratio": 1.433
             },
             "ext": "./config/configcenter.json"
+        },
+        {
+            "key": "wogg",
+            "name": "💗｜玩偶｜网盘",
+            "type": 3,
+            "api": "csp_Wogg",
+            "searchable": 1,
+            "changeable": 0,
+            "ext": ""
+        },
+        {
+            "key": "mogg",
+            "name": "💗｜木偶｜网盘",
+            "type": 3,
+            "api": "csp_Mogg",
+            "searchable": 1,
+            "changeable": 0,
+            "ext": ""
+        },
+        {
+            "key": "DuoDuo",
+            "name": "💗｜多多｜网盘",
+            "type": 3,
+            "api": "csp_DuoDuo",
+            "searchable": 1,
+            "changeable": 0,
+            "ext": "{\"site\": [\"https://tv.yydsys.top/\"]}"
+        },
+        {
+            "key": "NaBi",
+            "name": "💗｜蜡笔｜网盘",
+            "type": 3,
+            "api": "csp_NaBi",
+            "searchable": 1,
+            "changeable": 0,
+            "ext": "{\"site\": [\"http://www.labi88.sbs/\"]}"
+        },
+        {
+            "key": "ZhiZhen",
+            "name": "💗｜至臻｜网盘",
+            "type": 3,
+            "api": "csp_ZhiZhen",
+            "searchable": 1,
+            "changeable": 0,
+            "ext": "{\"site\": [\"https://mihdr.top/\"]}"
+        },
+        {
+            "key": "Libvio",
+            "name": "💗｜立播｜网盘",
+            "type": 3,
+            "api": "csp_Libvio",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": "https://www.libvio.link"
+        },
+        {
+            "key": "KuaKeS",
+            "name": "💗｜夸社｜网盘",
+            "type": 3,
+            "api": "csp_KuaKeS",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": {}
         },
         {
             "key": "glod",
@@ -73,17 +138,6 @@
             "api": "csp_Xb6v",
             "searchable": 1,
             "filterable": 1
-        },
-        {
-            "key": "dytt",
-            "name": "🎉｜天堂｜采集",
-            "type": 1,
-            "api": "http://127.0.0.1:9978/proxy?do=dytt",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "timeout": 10
         },
         {
             "key": "juheduanju",
@@ -206,36 +260,6 @@
             }
         },
         {
-            "key": "Libvio",
-            "name": "☁｜立播｜4K",
-            "type": 3,
-            "api": "csp_Libvio",
-            "searchable": 1,
-            "filterable": 0,
-            "changeable": 0,
-            "ext": "https://www.libvio.link"
-        },
-        {
-            "key": "KuaKeS",
-            "name": "☁｜夸社｜4K",
-            "type": 3,
-            "api": "csp_KuaKeS",
-            "searchable": 1,
-            "filterable": 0,
-            "changeable": 0,
-            "ext": {}
-        },
-        {
-            "key": "seedhub",
-            "name": "☁｜SeedHub｜4K",
-            "type": 3,
-            "api": "csp_SeedHub",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "changeable": 0
-        },
-        {
             "key": "myuc",
             "name": "🌆｜我的┃优囍",
             "type": 3,
@@ -352,7 +376,7 @@
         },
         {
             "key": "networkdb",
-            "name": "💖｜网络数据库合集",
+            "name": "💞｜网络数据库合集",
             "type": 3,
             "api": "csp_NetworkDB",
             "searchable": 1,
@@ -376,7 +400,7 @@
         },
         {
             "key": "Tg123Search",
-            "name": "☁｜123┃TG搜",
+            "name": "💖｜123┃TG搜",
             "type": 3,
             "api": "csp_Tg123Search",
             "hide": 1,
@@ -386,7 +410,7 @@
         },
         {
             "key": "TgbaiduSearch",
-            "name": "☁｜百度┃TG搜",
+            "name": "💖｜百度┃TG搜",
             "type": 3,
             "api": "csp_TgbaiduSearch",
             "hide": 1,
@@ -396,7 +420,7 @@
         },
         {
             "key": "Tg189Search",
-            "name": "☁｜天翼┃TG搜",
+            "name": "💖｜天翼┃TG搜",
             "type": 3,
             "api": "csp_Tg189Search",
             "hide": 1,
@@ -406,7 +430,7 @@
         },
         {
             "key": "TgQuarkSearch",
-            "name": "☁｜夸克┃TG搜",
+            "name": "💖｜夸克┃TG搜",
             "type": 3,
             "api": "csp_TgQuarkSearch",
             "hide": 1,
@@ -416,7 +440,7 @@
         },
         {
             "key": "TgAliSearch",
-            "name": "☁｜阿里┃TG搜",
+            "name": "💖｜阿里┃TG搜",
             "type": 3,
             "api": "csp_TgAliSearch",
             "hide": 1,
@@ -425,184 +449,120 @@
             "ext": {}
         },
         {
-            "key": "TgSearchQuark",
-            "name": "☁｜夸克┃盘搜",
+            "key": "PanSouQuark",
+            "name": "💖｜夸克┃盘搜",
             "type": 3,
-            "api": "csp_TgSearchQuark",
+            "api": "csp_PanSou",
             "searchable": 1,
             "hide": 1,
             "filterable": 0,
             "changeable": 1,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "夸克"
                 ]
             }
         },
         {
-            "key": "TgSearchUc",
-            "name": "☁｜优囍┃盘搜",
+            "key": "PanSouUc",
+            "name": "💖｜优囍┃盘搜",
             "type": 3,
-            "api": "csp_TgSearchUc",
+            "api": "csp_PanSou",
             "searchable": 1,
             "changeable": 1,
             "hide": 1,
             "filterable": 0,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "UC"
                 ]
             }
         },
         {
-            "key": "TgSearchAli",
-            "name": "☁｜阿里┃盘搜",
+            "key": "PanSouAli",
+            "name": "💖｜阿里┃盘搜",
             "type": 3,
-            "api": "csp_TgSearchAli",
+            "api": "csp_PanSou",
             "searchable": 1,
             "hide": 1,
             "changeable": 1,
             "filterable": 0,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "阿里"
                 ]
             }
         },
         {
-            "key": "TgSearchBaidu",
-            "name": "☁｜百度┃盘搜",
+            "key": "PanSouBaidu",
+            "name": "💖｜百度┃盘搜",
             "type": 3,
-            "api": "csp_TgSearchBaidu",
+            "api": "csp_PanSou",
             "searchable": 1,
+            "hide": 1,
             "changeable": 1,
             "filterable": 0,
-            "hide": 1,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "百度"
                 ]
             }
         },
         {
-            "key": "TgSearch123",
-            "name": "☁｜123┃盘搜",
+            "key": "PanSou123",
+            "name": "💖｜123┃盘搜",
             "type": 3,
-            "api": "csp_TgSearch123",
+            "api": "csp_PanSou",
             "searchable": 1,
             "changeable": 1,
             "hide": 1,
             "filterable": 0,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "123盘"
                 ]
             }
         },
         {
-            "key": "TgSearch189",
-            "name": "☁｜天翼┃盘搜",
+            "key": "PanSou189",
+            "name": "💖｜天翼┃盘搜",
             "type": 3,
-            "api": "csp_TgSearch189",
+            "api": "csp_PanSou",
             "searchable": 1,
             "filterable": 0,
             "changeable": 1,
             "hide": 1,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "天翼"
                 ]
             }
         },
         {
-            "key": "TgSearch139",
-            "name": "☁｜移动┃盘搜",
+            "key": "PanSou139",
+            "name": "💖｜移动┃盘搜",
             "type": 3,
-            "api": "csp_TgSearch139",
+            "api": "csp_PanSou",
             "searchable": 1,
             "hide": 1,
             "changeable": 1,
             "filterable": 0,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "移动"
                 ]
             }
         },
         {
-            "key": "TgSearchMagnet",
-            "name": "☁｜磁力┃盘搜",
+            "key": "PanSouMagnet",
+            "name": "💖｜磁力┃盘搜",
             "type": 3,
-            "api": "csp_TgSearchMagnet",
+            "api": "csp_PanSou",
             "searchable": 1,
             "hide": 1,
             "filterable": 0,
             "changeable": 1,
             "ext": {
-                "api_urls": [
-                    "https://so.252035.xyz/api/search",
-                    "https://so.566987.xyz/api/search",
-                    "http://154.17.15.197:8080/api/search",
-                    "http://152.69.222.142:8088/api/search",
-                    "https://pan.wnng.cn/api/search",
-                    "http://117.82.58.102:3002/api/search"
-                ],
                 "sources": [
                     "磁力"
                 ]
