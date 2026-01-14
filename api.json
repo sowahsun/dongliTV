@@ -130,8 +130,8 @@
                     "https://woog.nxog.eu.org",
                     "https://woog.nxog.fun",
                     "https://woog.430520.xyz",
-                    "https://woog.nxog.de5.net/",
-                    "https://woog.装歌.de5.net/"
+                    "https://woog.nxog.de5.net",
+                    "https://woog.装歌.de5.net"
                 ]
             }
         },
@@ -179,14 +179,14 @@
             "changeable": 0,
             "ext": {
                 "site": [
-                    "https://shandian.blog/",
+                    "https://shandian.blog",
                     "https://sd.sduc.site"
                 ]
             }
         },
         {
-            "key": "飒羊",
-            "name": "💗｜飒羊｜网盘",
+            "key": "小飒",
+            "name": "💗｜小飒｜网盘",
             "type": 3,
             "api": "csp_MacCMS",
             "searchable": 1,
@@ -195,7 +195,7 @@
             "changeable": 0,
             "ext": {
                 "site": [
-                    "http://xsayang.fun:12512/"
+                    "http://xsayang.fun:12512"
                 ]
             }
         },
