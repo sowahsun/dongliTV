@@ -329,6 +329,23 @@
             "ext": ""
         },
         {
+            "key": "星影",
+            "name": "✨｜星影｜直播",
+            "type": 3,
+            "api": "csp_AppGet",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 0,
+            "filterable": 1,
+            "timeout": 30,
+            "ext": {
+                "site": "http://110.81.153.7:1963/get.txt",
+                "dataKey": "k7L9mQ2xR4pW8n88",
+                "dataIv": "k7L9mQ2xR4pW8n88",
+                "version": "2"
+            }
+        },
+        {
             "key": "Huya",
             "name": "🐯｜虎牙｜直播",
             "type": 3,
@@ -564,8 +581,12 @@
             "key": "驿站",
             "name": "🎃｜驿站丨APP",
             "type": 3,
-            "quickSearch": 1,
             "api": "csp_AppGet",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 0,
+            "filterable": 1,
+            "timeout": 30,
             "ext": {
                 "site": "https://dyyztvappapigoodgx.68.gy:12689/ciwk28vu38io8/apiurl.txt",
                 "dataKey": "dyyztvapiappyyds",
@@ -576,8 +597,12 @@
             "key": "灵虎",
             "name": "🎃｜灵虎｜APP",
             "type": 3,
-            "quickSearch": 1,
             "api": "csp_AppGet",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 0,
+            "filterable": 1,
+            "timeout": 30,
             "ext": {
                 "site": "https://bind.315999.xyz/89.txt",
                 "dataKey": "#getapp@TMD@2025",
@@ -589,8 +614,12 @@
             "key": "旗星",
             "name": "🎃｜旗星｜APP",
             "type": 3,
-            "quickSearch": 1,
             "api": "csp_AppGet",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 0,
+            "filterable": 1,
+            "timeout": 30,
             "ext": {
                 "url": "http://ys.qist.top",
                 "dataKey": "2SWSPFxugBLPPOKo",
