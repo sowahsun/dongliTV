@@ -8,6 +8,11 @@
             "type_name": "国创",
             "type_id": "4"
         },
+         {
+            "type_name": "电影",
+            "type_id": "2"
+        },
+       
         {
             "type_name": "剧集",
             "type_id": "5"
