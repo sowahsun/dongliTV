@@ -225,12 +225,22 @@
             "name": "💗｜盘它｜网盘",
             "type": 3,
             "api": "csp_PanTa",
-            "searchable": 0,
+            "searchable": 1,
             "filterable": 0,
             "changeable": 0,
             "style": {
                 "type": "list"
             }
+        },
+        {
+            "key": "人人",
+            "name": "💗｜人人｜网盘",
+            "type": 3,
+            "api": "csp_RenRen",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "changeable": 0
         },
         {
             "key": "glod",
@@ -818,6 +828,20 @@
             "changeable": 0,
             "filterable": 1,
             "ext": ""
+        },
+        {
+            "key": "急救教学",
+            "name": "🚑｜急救｜教学",
+            "type": 3,
+            "api": "csp_FirstAid",
+            "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
+            "style": {
+                "type": "rect",
+                "ratio": 3.8
+            },
+            "gridview": "0-0-4.1"
         },
         {
             "key": "myuc",
