@@ -1,5 +1,6 @@
 {
     "logo": "./assets/logo2025121201.png",
+    "warningText": "禁止任何商业用途，仅限个人学习爬虫原理使用！",
     "wallpaper": "https://tu.ltyuanfang.cn/api/fengjing.php",
     "spider": "./jar/dongli-spider.jar",
     "sites": [
@@ -738,6 +739,33 @@
                 "site": "https://yun-1316442804.cos.ap-guangzhou.myqcloud.com/a.txt",
                 "dataKey": "123456789abcdefg",
                 "dataIv": "123456789abcdefg"
+            }
+        },
+        {
+            "key": "Jzb",
+            "name": "🏀┃说球┃回放",
+            "type": 3,
+            "api": "csp_Jzb",
+            "searchable": 0,
+            "changeable": 0,
+            "style": {
+                "type": "list"
+            },
+            "gridview": 3,
+            "ext": {
+                "sites": ""
+            }
+        },
+        {
+            "key": "88看球",
+            "name": "⚽｜看球｜直播",
+            "type": 3,
+            "api": "csp_Kanqiu",
+            "searchable": 0,
+            "changeable": 0,
+            "gridview": 3,
+            "style": {
+                "type": "list"
             }
         },
         {
