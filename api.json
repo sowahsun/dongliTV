@@ -946,54 +946,60 @@
             "ext": "./config/market.json"
         },
         {
-            "key": "Tg123Search",
-            "name": "💖｜123┃TG搜",
+            "key": "TgAliSearch",
+            "name": "💝｜夸克｜TG搜",
             "type": 3,
-            "api": "csp_Tg123Search",
-            "hide": 1,
+            "api": "csp_TgSearch",
             "searchable": 1,
-            "changeable": 1,
-            "ext": {}
+            "changeable": 0,
+            "hide": 1,
+            "filterable": 0,
+            "ext": {
+                "site": "https://tgsou.252035.xyz/",
+                "query": "channelUsername=alyp_1,clouddriveresources,dianyingshare,hdhhd21,jdjdn1111,leoziyuan,NewQuark,PanjClub,Quark_Movies,xiangxiunb,yunpanchat,yunpanqk,XiangxiuNB,alyp_4K_Movies,alyp_Animation,alyp_TV,alyp_JLP&pic=true"
+            }
         },
         {
             "key": "TgbaiduSearch",
-            "name": "💖｜百度┃TG搜",
+            "name": "💝｜百度｜TG搜",
             "type": 3,
-            "api": "csp_TgbaiduSearch",
-            "hide": 1,
+            "api": "csp_TgSearch",
             "searchable": 1,
-            "changeable": 1,
-            "ext": {}
+            "changeable": 0,
+            "hide": 1,
+            "filterable": 0,
+            "ext": {
+                "site": "https://tgsou.252035.xyz/",
+                "query": "channelUsername=BaiduCloudDisk,bdwpzhpd,Baidu_Netdisk&pic=true"
+            }
+        },
+        {
+            "key": "Tg123Search",
+            "name": "💝｜123盘｜TG搜",
+            "type": 3,
+            "api": "csp_TgSearch",
+            "searchable": 1,
+            "changeable": 0,
+            "hide": 1,
+            "filterable": 0,
+            "ext": {
+                "site": "https://tgsou.252035.xyz/",
+                "query": "channelUsername=wp123zy,xx123pan,yp123pan,zyfb123&pic=true"
+            }
         },
         {
             "key": "Tg189Search",
-            "name": "💖｜天翼┃TG搜",
+            "name": "💝｜天翼｜TG搜",
             "type": 3,
-            "api": "csp_Tg189Search",
-            "hide": 1,
+            "api": "csp_TgSearch",
             "searchable": 1,
-            "changeable": 1,
-            "ext": {}
-        },
-        {
-            "key": "TgQuarkSearch",
-            "name": "💖｜夸克┃TG搜",
-            "type": 3,
-            "api": "csp_TgQuarkSearch",
+            "changeable": 0,
             "hide": 1,
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {}
-        },
-        {
-            "key": "TgAliSearch",
-            "name": "💖｜阿里┃TG搜",
-            "type": 3,
-            "api": "csp_TgAliSearch",
-            "hide": 1,
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {}
+            "filterable": 0,
+            "ext": {
+                "site": "https://tgsou.252035.xyz/",
+                "query": "channelUsername=cloud189_group,yunpan139,cloud189_group,cloudtianyi,kuakeclound,tianyirigeng,txtyzy,tyypzhpd,tyysypzypd,yunpan189&pic=true"
+            }
         },
         {
             "key": "PanSouQuark",
