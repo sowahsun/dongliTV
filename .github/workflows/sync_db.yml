@@ -1,0 +1,53 @@
+name: 自动同步数据库 (Keep DB Fresh)
+
+permissions:
+  contents: write  # 允许脚本创建 Release
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # 每天北京时间凌晨4点自动运行 (UTC 20:00)
+  workflow_dispatch: # 允许你手动点击按钮运行
+
+jobs:
+  sync_and_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 1. 获取上游最新数据库地址
+        id: get_upstream
+        run: |
+          # 这是一个魔法命令：自动去 chitue/dongliTV 找最新的 Release，并提取 song_xxxx.db 的下载链接
+          # 使用 API 获取最新发布列表中的第一个 (index 0)
+          DOWNLOAD_URL=$(curl -sL https://api.github.com/repos/chitue/dongliTV/releases | jq -r '.[0].assets[] | select(.name | test("song_.*\\.db")) | .browser_download_url' | head -n 1)
+          
+          echo "找到上游文件: $DOWNLOAD_URL"
+          echo "url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
+
+      - name: 2. 下载并重命名
+        run: |
+          # 下载文件
+          wget -q "${{ steps.get_upstream.outputs.url }}" -O temp.db
+          
+          # 重命名为固定的名字 (这步很关键！)
+          # 把它改成 ktv.db，以后你的配置里就只写 ktv.db
+          mv temp.db ktv.db
+          
+          echo "文件已准备好: ktv.db ($(du -h ktv.db | cut -f1))"
+
+      - name: 3. 发布到我的 Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: database-latest  # 固定标签名，保证链接不变
+          name: 每日同步数据库 (Auto Sync)
+          body: |
+            数据源: chitue/dongliTV
+            同步时间: ${{ steps.get_upstream.outputs.url }}
+            
+            ⚠️ **使用说明**: 
+            文件名已固定为 `ktv.db`，链接永久有效，无需更新 JSON。
+          files: ktv.db
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
