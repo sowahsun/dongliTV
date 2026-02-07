@@ -1,53 +1,35 @@
-name: 自动同步数据库 (Keep DB Fresh)
+name: 手动搬运数据库 (One-Time)
 
 permissions:
-  contents: write  # 允许脚本创建 Release
+  contents: write  # 允许发布 Release
 
 on:
-  schedule:
-    - cron: '0 20 * * *' # 每天北京时间凌晨4点自动运行 (UTC 20:00)
-  workflow_dispatch: # 允许你手动点击按钮运行
+  workflow_dispatch: # 只允许手动点击按钮运行
 
 jobs:
-  sync_and_release:
+  one_time_copy:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
 
-      - name: 1. 获取上游最新数据库地址
-        id: get_upstream
+      - name: 1. 直接下载并改名
         run: |
-          # 这是一个魔法命令：自动去 chitue/dongliTV 找最新的 Release，并提取 song_xxxx.db 的下载链接
-          # 使用 API 获取最新发布列表中的第一个 (index 0)
-          DOWNLOAD_URL=$(curl -sL https://api.github.com/repos/chitue/dongliTV/releases | jq -r '.[0].assets[] | select(.name | test("song_.*\\.db")) | .browser_download_url' | head -n 1)
+          echo "开始下载..."
+          # 直接写死你截图里的那个文件地址，不搞自动探测了，绝对稳
+          wget -O ktv.db "https://github.com/chitue/dongliTV/releases/download/databases-20260130/song_9c8ec.db"
           
-          echo "找到上游文件: $DOWNLOAD_URL"
-          echo "url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
+          # 检查一下文件多大，确认下载成功
+          ls -lh ktv.db
 
-      - name: 2. 下载并重命名
-        run: |
-          # 下载文件
-          wget -q "${{ steps.get_upstream.outputs.url }}" -O temp.db
-          
-          # 重命名为固定的名字 (这步很关键！)
-          # 把它改成 ktv.db，以后你的配置里就只写 ktv.db
-          mv temp.db ktv.db
-          
-          echo "文件已准备好: ktv.db ($(du -h ktv.db | cut -f1))"
-
-      - name: 3. 发布到我的 Release
+      - name: 2. 发布到我的 Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: database-latest  # 固定标签名，保证链接不变
-          name: 每日同步数据库 (Auto Sync)
+          tag_name: database-static # 给个固定的版本号
+          name: KTV 数据库 (静态版)
           body: |
-            数据源: chitue/dongliTV
-            同步时间: ${{ steps.get_upstream.outputs.url }}
-            
-            ⚠️ **使用说明**: 
-            文件名已固定为 `ktv.db`，链接永久有效，无需更新 JSON。
+            手动搬运自: databases-20260130
+            文件名已重命名为: ktv.db
           files: ktv.db
-          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
